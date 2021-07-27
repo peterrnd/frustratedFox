@@ -1,0 +1,105 @@
+/*filename:  paa_animate.css
+  Author" Peter Rand 7/26/2021
+  Sprite animation is created using the paa_bat.png, paa_bfly.png and paa_fox.png image files.
+  
+  paa_bat.png has 40 frames
+  paa_bfly.png has 34 frames
+  paa_fox.png has 28 frames
+*/
+
+/* Transition Effects */
+nav#gameLinks a {
+	position: relative;
+	color: white;
+	transition: color 0.5s;
+}
+
+nav#gameLinks a:hover {
+	color: rgb(255, 194, 99);
+}
+
+nav#gameLinks a::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	width: 0%;
+	height: 8px;
+	background-image: linear-gradient(to right, rgb(237, 243, 71), rgb(188, 74, 0));
+	border-radius: 4px;
+	opacity: 0;
+}
+
+nav#gameLinks a:hover::after {
+	opacity: 1;
+	width: 100%;
+	transition: opacity 0.5s, width 0.5s;
+} 
+
+/* Sprite Styles */
+
+div.sprite {
+	position: absolute;
+}
+
+div#bat {
+	width: 48px;
+	height: 50px;
+	top: 100px;
+	left: -50px;
+	background-image: url("paa_bat.png");
+	background-position: left center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+div#butterfly {
+	width: 35px;
+	height: 35px;
+	top: 60px;
+	left: -50px;
+	background-image: url("paa_bfly.png");
+	background-position: left center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+	
+div#fox {
+	width: 280px;
+	height: 260px;
+	bottom: 10px;
+	right: 10px;
+	background-image: url("paa_fox.png");
+	background-position: left center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+/* Animation Styles */
+
+@keyframes playSprite {
+	100% {background-position: right center;}
+}
+
+@keyframes flyRight {
+	25% {top: 150px;}
+	50% {top: 55px;}
+	65% {top: 120px;}
+	90% {top: 50px;}
+	100% {top: 80px; left: 100%;}
+}
+
+div#fox {
+	animation: playSprite 3.5s infinite steps(27);
+	animation-delay: 4s;
+}
+
+div#bat {
+	animation: playSprite 2s infinite steps(39),
+			   flyRight 8s linear infinite; 
+}
+
+div#butterfly {
+	animation: playSprite 1s infinite steps(33) 3s,
+			   flyRight 6s cubic-bezier(0, 1, 0.73, 0) infinite; 
+}
